@@ -1,3 +1,11 @@
+@import "reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+  box-sizing: content-box;
+}
+
 .backGroundImg {
   width: 100%;
   height: 300px;
@@ -9,7 +17,7 @@
 }
 
 .titleName {
-  top: 60px;
+  top: 90px;
   position: absolute;
   color: white;
   left: 50%;
@@ -18,36 +26,8 @@
   font-weight: 600;
 }
 
-.memberChoose {
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: space-between;
-  border-radius: 10px;
-  list-style: none;
-  padding: 15px;
-  width: 500px;
-  background-color: black;
-  margin-bottom: 10px;
-}
-
-.eachMember {
-  font-size: 20px;
-  border: 1px solid black;
-  border-radius: 5px;
-  width: 100px;
-  padding: 5px;
-  text-align: center;
-  background-color: hsl(269, 100%, 26%);
-  color: white;
-  user-select: none;
-  cursor: pointer;
-}
-
 body {
-  background-color: black;
+  background-color: white;
 }
 
 .fanLetterWriteBox {
@@ -64,7 +44,7 @@ body {
 
 .readFanLetter {
   width: 500px;
-  height: 160px;
+  height: 300px;
   margin: auto;
   padding: 20px;
   background-color: rgb(235, 235, 235);
@@ -74,7 +54,10 @@ body {
 .eachLetter {
   width: 500px;
   height: 80px;
-  background-color: rgb(186, 186, 186);
+  background-color: hsl(269, 100%, 26%);
   border-radius: 7px;
-  border: 1px solid white;
+  border: 2px solid white;
+  color: rgb(218, 218, 218);
+  font-size: large;
+  font-weight: 100;
 }
