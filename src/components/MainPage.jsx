@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 // styled-components = 조건부 스타일링
 // [사용법] 선언 변수명 = styled.바꿀태그명`CSS`
+// 배경 이미지 임포트 하기
 const MemberChoose = styled.div`
 position: absolute;
 bottom: 16px;
@@ -56,7 +57,7 @@ function MainPage({ letters, setLetters }) {
     // (1) 최초 렌더링 시에만 호출됨(callback 함수가)
     useEffect(() => {
         console.log(1)
-    }, []);
+    }, [letters]);
 
     // TODO: 2번째
     //(1) 최초 렌더링 시 호출
@@ -88,6 +89,7 @@ function MainPage({ letters, setLetters }) {
     }
 
     const [nickname, setNickname] = useState('');
+    // content 선언했던 자리
     const [content, setContent] = useState('');
 
 
@@ -113,14 +115,14 @@ function MainPage({ letters, setLetters }) {
             createdAt: new Date().toISOString(),
             content: content,
             writedTo: selectedData,
+            isDone: false,
         }
         setLetters([...letters, newLetter]);
         setNickname("");
         setContent("");
     }
 
-
-    // <form></form> 태그 사용해서 한꺼번에 data 관리!!! (창식 튜터님 todolist 영상 보기)
+    // <form /> 태그 사용해서 한꺼번에 data 관리!!! (창식 튜터님 to-do list 영상 보기)
     return (
         <div className="App">
             <header className="backGroundImg">
