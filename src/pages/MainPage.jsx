@@ -3,9 +3,31 @@ import LetterList from "components/LetterList";
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
+
 // styled-components = 조건부 스타일링
 // [사용법] 선언 변수명 = styled.바꿀태그명`CSS`
 // 배경 이미지 임포트 하기
+const StbackGroundImg = styled.header`
+width: 100%;
+height: 300px;
+position: relative;
+background-image: url("https://pbs.twimg.com/media/FUGGRguaAAIslVA?format=jpg&name=900x900");
+background-size: cover;
+background-position: center;
+margin-bottom: 25px;
+`
+
+
+const StTitleName = styled.h1`
+top: 90px;
+position: absolute;
+color: white;
+left: 50%;
+transform: translateX(-50%);
+font-size: 40px;
+font-weight: 600;
+`
+
 const MemberChoose = styled.div`
 position: absolute;
 bottom: 16px;
@@ -20,7 +42,6 @@ width: 500px;
 background-color: black;
 margin-bottom: 10px;
 `
-
 
 const StMemberBtn = styled.button`
 font-size: 20px;
@@ -43,6 +64,30 @@ color: white;
 user-select: none;
 cursor: pointer;
 `;
+
+const StMain = styled.main`
+background-color: white;
+`
+
+const StFanLetterWriteBox = styled.div`
+width: 500px;
+height: 160px;
+margin: auto;
+padding: 20px;
+background-color: rgb(235, 235, 235);
+border-radius: 7px;
+display: flex;
+flex-direction: column;
+margin-bottom: 25px;
+`
+const StReadFanLetter = styled.div`
+width: 500px;
+height: 300px;
+margin: auto;
+padding: 20px;
+background-color: rgb(235, 235, 235);
+border-radius: 7px;
+`
 
 
 // 컴포넌트 분리 및 추후 각각의 파일로 옮기는 작업 필요
@@ -125,18 +170,18 @@ function MainPage({ letters, setLetters }) {
     // <form /> 태그 사용해서 한꺼번에 data 관리!!! (창식 튜터님 to-do list 영상 보기)
     return (
         <div className="App">
-            <header className="backGroundImg">
+            <StbackGroundImg>
                 <audio src="https://drive.google.com/file/d/1hi-IP1Xv1wT4q2XxPxWIm9_hMc9ZvtW9/view?usp=sharing" controls="controls"></audio>
-                <h1 className="titleName">aespa Fan Letter Collection</h1>
+                <StTitleName className="titleName">aespa Fan Letter Collection</StTitleName>
                 <MemberChoose>
                     <StMemberBtn onClick={() => filteredCard("카리나")}>카리나</StMemberBtn>
                     <StMemberBtn onClick={() => filteredCard("지젤")}>지젤</StMemberBtn>
                     <StMemberBtn onClick={() => filteredCard("윈터")}>윈터</StMemberBtn>
                     <StMemberBtn onClick={() => filteredCard("닝닝")}>닝닝</StMemberBtn>
                 </MemberChoose>
-            </header>
-            <main>
-                <div className="fanLetterWriteBox">
+            </StbackGroundImg>
+            <StMain>
+                <StFanLetterWriteBox>
                     닉네임: <input type="text" value={nickname} onChange={(event) => {
                         setNickname(event.target.value)
                     }} maxLength="8" />
@@ -153,13 +198,13 @@ function MainPage({ letters, setLetters }) {
                         <option value="닝닝">닝닝</option>
                     </select>
                     <button onClick={(uuidv4) => onClickAddBtn(uuidv4)}>팬레터 등록</button>
-                </div>
-                <div className='readFanLetter'>
+                </StFanLetterWriteBox>
+                <StReadFanLetter>
                     <div>
                         <LetterList letters={letters} selectedMember={selectedMember} />
                     </div>
-                </div>
-            </main>
+                </StReadFanLetter>
+            </StMain>
         </div>
     );
 }

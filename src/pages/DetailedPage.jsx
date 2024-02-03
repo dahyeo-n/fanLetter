@@ -1,5 +1,17 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
+
+const StEachLetter = styled.div`
+width: 500px;
+height: 80px;
+background-color: hsl(269, 100%, 26%);
+border-radius: 7px;
+border: 2px solid white;
+color: rgb(218, 218, 218);
+font-size: large;
+font-weight: 100;
+`
 
 function DetailedPage({ letters, setLetters }) {
     const { id } = useParams();
@@ -73,7 +85,7 @@ function DetailedPage({ letters, setLetters }) {
     return letter ? (
         <div>
             <button onClick={goToMainPage}>Main Page</button>
-            <div className="eachLetter">
+            <StEachLetter>
                 {toggleBtn === true ? (
                     <>
                         <textarea
@@ -83,6 +95,7 @@ function DetailedPage({ letters, setLetters }) {
                     </>
                 ) : (
                     <>
+                        <div>{letter.avartar}</div>
                         <div>
                             [작성자] {letter.nickname}
                         </div>
@@ -107,7 +120,7 @@ function DetailedPage({ letters, setLetters }) {
                         <button onClick={() => onClickDeleteBtn(letter.id)}>삭제</button>
                     </>
                 )}
-            </div>
+            </StEachLetter>
         </div>
     ) : null;
 }

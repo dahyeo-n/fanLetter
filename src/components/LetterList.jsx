@@ -1,4 +1,16 @@
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+const StEachLetter = styled.div`
+width: 500px;
+height: 80px;
+background-color: hsl(269, 100%, 26%);
+border-radius: 7px;
+border: 2px solid white;
+color: rgb(218, 218, 218);
+font-size: large;
+font-weight: 100;
+`
 
 export default function LetterList({ letters, selectedMember, wantToEdit }) {
     const navigate = useNavigate();
@@ -19,7 +31,7 @@ export default function LetterList({ letters, selectedMember, wantToEdit }) {
                 <div>아직 작성된 팬레터가 없습니다! 팬레터를 작성해주세요 🔥</div>
             ) : (letters.map((it) =>
                 (it.writedTo === selectedMember)
-                    ? <div className="eachLetter" key={it.id} wantToEdit={wantToEdit}
+                    ? <StEachLetter key={it.id} wantToEdit={wantToEdit}
                         onClick={() => onClickMoveToEachLetter(it.id)}
                     >
                         <img src={it.avatar} alt="profile"></img>
@@ -30,7 +42,7 @@ export default function LetterList({ letters, selectedMember, wantToEdit }) {
                                 ? it.content
                                 : it.content.slice(0, 50) + '...'
                         }</div>
-                    </div>
+                    </StEachLetter>
                     : null
             ))}
         </ul>
