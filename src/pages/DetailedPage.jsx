@@ -1,3 +1,4 @@
+import { useLetters } from "context/LetterContext";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -11,9 +12,11 @@ border: 2px solid white;
 color: rgb(218, 218, 218);
 font-size: large;
 font-weight: 100;
+word-break: break-all;
 `
 
-function DetailedPage({ letters, setLetters }) {
+function DetailedPage() {
+    const { letters, setLetters } = useLetters();
     const { id } = useParams();
 
     const navigate = useNavigate();

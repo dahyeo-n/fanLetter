@@ -1,3 +1,4 @@
+import { useLetters } from "context/LetterContext";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -12,7 +13,9 @@ font-size: large;
 font-weight: 100;
 `
 
-export default function LetterList({ letters, selectedMember, wantToEdit }) {
+export default function LetterList() {
+    const { letters, selectedMember } = useLetters();
+
     const navigate = useNavigate();
     // 아래에서 나오는 id는 변수명이라 무엇으로 하든 상관없음
     // 조건은 밑에서 사용하는 대상과 일치하게 맞춰주기
@@ -31,7 +34,7 @@ export default function LetterList({ letters, selectedMember, wantToEdit }) {
                 <div>아직 작성된 팬레터가 없습니다! 팬레터를 작성해주세요 🔥</div>
             ) : (letters.map((it) =>
                 (it.writedTo === selectedMember)
-                    ? <StEachLetter key={it.id} wantToEdit={wantToEdit}
+                    ? <StEachLetter key={it.id}
                         onClick={() => onClickMoveToEachLetter(it.id)}
                     >
                         <img src={it.avatar} alt="profile"></img>

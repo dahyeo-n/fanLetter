@@ -1,11 +1,14 @@
 import Router from "shared/Router";
 import GlobalStyle from "Globalstyle";
+import { LettersProvider } from "context/LetterContext";
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Router />
+      <LettersProvider>
+        <Router />
+      </LettersProvider>
     </>
   )
 }

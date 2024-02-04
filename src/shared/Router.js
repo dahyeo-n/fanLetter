@@ -1,17 +1,27 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainPage from "pages/MainPage";
 import DetailedPage from "pages/DetailedPage";
-import { useState } from "react";
-import dummy from "dummy.json";
+import { useLetters } from "context/LetterContext";
 
 const Router = () => {
-    const [letters, setLetters] = useState(dummy);
-    const [updateContent, setUpdateContent] = useState();
+    const { letters, setLetters, updateContent, setUpdateContent } = useLetters();
+    console.log(letters)
+
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<MainPage letters={letters} setLetters={setLetters} />} />
-                <Route path="/detail/:id" element={<DetailedPage letters={letters} setLetters={setLetters} updateContent={updateContent} setUpdateContent={setUpdateContent} />} />
+                <Route path="/"
+                    element={<MainPage />} />
+                <Route
+                    path="/detail/:id"
+                    element={
+                        <DetailedPage letters={letters}
+                            setLetters={setLetters}
+                            updateContent={updateContent}
+                            setUpdateContent={setUpdateContent}
+                        />
+                    }
+                />
                 {/* 상태 관리 */}
             </Routes>
         </BrowserRouter>

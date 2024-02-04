@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 import LetterList from "components/LetterList";
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useLetters } from "context/LetterContext";
+
 
 
 // styled-components = 조건부 스타일링
@@ -93,8 +95,8 @@ border-radius: 7px;
 // 컴포넌트 분리 및 추후 각각의 파일로 옮기는 작업 필요
 // useState 작성
 // 일회성 필터 해결하기 ⇒ 해결했음 (주말에 복습 필요)
-function MainPage({ letters, setLetters }) {
-    const [selectedMember, setSelectedMember] = useState("카리나");
+function MainPage() {
+    const { letters, setLetters, selectedMember, setSelectedMember } = useLetters();
     const [selectedData, setSelectedData] = useState("");
     const [test, setTest] = useState(false);
 
@@ -201,7 +203,7 @@ function MainPage({ letters, setLetters }) {
                 </StFanLetterWriteBox>
                 <StReadFanLetter>
                     <div>
-                        <LetterList letters={letters} selectedMember={selectedMember} />
+                        <LetterList selectedMember={selectedMember} />
                     </div>
                 </StReadFanLetter>
             </StMain>
