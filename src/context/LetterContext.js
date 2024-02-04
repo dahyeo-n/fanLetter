@@ -4,6 +4,7 @@ import dummy from "dummy.json";
 
 const LettersContext = createContext();
 
+// 요 부분 이해 다시 해야 할 필요 있음
 const useLetters = () => {
     const context = useContext(LettersContext);
     return context;

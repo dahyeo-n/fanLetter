@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const StEachLetter = styled.div`
 width: 500px;
@@ -10,9 +11,12 @@ border: 2px solid white;
 color: rgb(218, 218, 218);
 font-size: large;
 font-weight: 100;
+word-break: break-all;
 `
 
-export default function LetterList({ letters, selectedMember, wantToEdit }) {
+export default function LetterList({ selectedMember, wantToEdit }) {
+    const { fanLetters } = useSelector(state => state.counter);
+
     const navigate = useNavigate();
     // 아래에서 나오는 id는 변수명이라 무엇으로 하든 상관없음
     // 조건은 밑에서 사용하는 대상과 일치하게 맞춰주기
@@ -22,14 +26,13 @@ export default function LetterList({ letters, selectedMember, wantToEdit }) {
 
 
     // [레터 없으면 없다고 메시지] 선언 - 필터 넣어주고, 삼항연산자 0이 아닐 경우에는 맵 돌리기
-    const filterData = letters.filter((item) => item.writedTo === selectedMember);
-
+    const filterData = fanLetters.filter((item) => item.writedTo === selectedMember);
 
     return (
         <ul>
             {filterData.length === 0 ? (
                 <div>아직 작성된 팬레터가 없습니다! 팬레터를 작성해주세요 🔥</div>
-            ) : (letters.map((it) =>
+            ) : (filterData.map((it) =>
                 (it.writedTo === selectedMember)
                     ? <StEachLetter key={it.id} wantToEdit={wantToEdit}
                         onClick={() => onClickMoveToEachLetter(it.id)}

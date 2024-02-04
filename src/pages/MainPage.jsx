@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 import LetterList from "components/LetterList";
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from "react-redux";
+import { addLetter } from "shared/redux/modules/counter";
 
 
 // styled-components = 조건부 스타일링
@@ -14,9 +16,7 @@ position: relative;
 background-image: url("https://pbs.twimg.com/media/FUGGRguaAAIslVA?format=jpg&name=900x900");
 background-size: cover;
 background-position: center;
-margin-bottom: 25px;
 `
-
 
 const StTitleName = styled.h1`
 top: 90px;
@@ -66,7 +66,7 @@ cursor: pointer;
 `;
 
 const StMain = styled.main`
-background-color: white;
+background-color: black;
 `
 
 const StFanLetterWriteBox = styled.div`
@@ -80,6 +80,7 @@ display: flex;
 flex-direction: column;
 margin-bottom: 25px;
 `
+
 const StReadFanLetter = styled.div`
 width: 500px;
 height: 300px;
@@ -96,6 +97,7 @@ border-radius: 7px;
 function MainPage({ letters, setLetters }) {
     const [selectedMember, setSelectedMember] = useState("카리나");
     const [selectedData, setSelectedData] = useState("");
+    const dispatch = useDispatch();
     const [test, setTest] = useState(false);
 
     // TODO: 1번째
@@ -162,7 +164,7 @@ function MainPage({ letters, setLetters }) {
             writedTo: selectedData,
             isDone: false,
         }
-        setLetters([...letters, newLetter]);
+        dispatch(addLetter(newLetter));
         setNickname("");
         setContent("");
     }
@@ -182,10 +184,10 @@ function MainPage({ letters, setLetters }) {
             </StbackGroundImg>
             <StMain>
                 <StFanLetterWriteBox>
-                    닉네임: <input type="text" value={nickname} onChange={(event) => {
+                    닉네임: <input type="text" value={nickname} placeholder="8자까지 입력 가능" onChange={(event) => {
                         setNickname(event.target.value)
                     }} maxLength="8" />
-                    내용: <input type="text" value={content} onChange={(event) => {
+                    내용: <input type="text" value={content} placeholder="40자까지 입력 가능" onChange={(event) => {
                         setContent(event.target.value)
                     }} maxLength="40" />
                     누구에게 작성하실 건가요? <select className="members" onChange={(event) => {
